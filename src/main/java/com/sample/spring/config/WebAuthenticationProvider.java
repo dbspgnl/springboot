@@ -59,7 +59,7 @@ public class WebAuthenticationProvider implements AuthenticationProvider {
     
             UsernamePasswordAuthenticationToken aToken = (
                 new UsernamePasswordAuthenticationToken(
-                    // user, 
+                    userId, 
                     null,
                     authorities
                 )

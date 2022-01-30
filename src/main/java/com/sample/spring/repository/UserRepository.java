@@ -2,5 +2,5 @@ package com.sample.spring.repository;
 
 // import org.springframework.data.jpa.repository.JpaRepository;
 
-// public interface BoardRepository extends JpaRepository<Board, Long> {
+// public interface UserRepository extends JpaRepository<User, Long> {
 // }
