@@ -1,15 +1,6 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head(title)">
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link href="starter-template.css" th:href="@{css/starter-template.css}" rel="stylesheet">
-
     <title th:text="${title}">Hello, Spring Boot!</title>
 </head>
   <body>  
@@ -35,7 +26,7 @@
             <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/account/register}"
                 sec:authorize="!isAuthenticated()">회원가입</a>
             <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
-       
+                <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
                 <span class="text-white" sec:authentication="name">사용자</span>&nbsp;
                 <span class="text-white mx-2" sec:authentication="principal">권한</span>
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
@@ -43,4 +34,4 @@
         </div>
     </nav>
   </body>  
-</html> -->
+</html>

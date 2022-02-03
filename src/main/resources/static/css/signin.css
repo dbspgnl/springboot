@@ -1,9 +1,9 @@
 html,
-body {
+.signin-body {
   height: 100%;
 }
 
-body {
+.signin-body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
