@@ -1,26 +1,28 @@
 package com.sample.spring.model;
 
-// import lombok.Data;
+import lombok.Data;
 
-// import javax.persistence.*;
-// import java.util.ArrayList;
-// import java.util.List;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-// @Entity
-// @Data
-// public class User {
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+@Entity
+@Data
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String username;
+    @Column
+    private String password;
+    @Column
+    private Boolean enabled;
 
-//     private String username;
-//     private String password;
-//     private Boolean enabled;
-
-//     @ManyToMany
-//     @JoinTable(
-//             name = "user_role",
-//             joinColumns = @JoinColumn(name = "user_id"),
-//             inverseJoinColumns = @JoinColumn(name = "role_id"))
-//     private List<Role> roles = new ArrayList<>();
-// }
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
+}
