@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,6 +24,13 @@ public class ChatController {
         List<Room> rooms = roomRepository.findAll();
         model.addAttribute("rooms", rooms);
         return "contents/chat/list";
+    }
+
+	@GetMapping(value = "/{roomId}")
+	public String enterRoom(
+		@PathVariable("roomId") String roomId 
+	){
+        return "contents/chat/room";
     }
     
 }
