@@ -3,7 +3,7 @@
 <head th:fragment="head(title)">
     <title th:text="${title}">SBP</title>
 </head>
-  <body>  
+<body>  
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="menu(menu)">
         <a class="navbar-brand" href="#">Spring Boot Project</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -19,14 +19,21 @@
                 <li class="nav-item" th:classappend="${menu} == 'board'? 'active'">
                     <a class="nav-link" th:href="@{/board/list}">게시판<span class="sr-only" th:if="${menu} == 'board'">(current)</span></a>
                 </li>
-                <li class="nav-item" th:classappend="${menu} == 'chat'? 'active'">
-                    <a class="nav-link" th:href="@{/chat/list}">채팅<span class="sr-only" th:if="${menu} == 'chat'">(current)</span></a>
-                </li>
-                <li class="nav-item" th:classappend="${menu} == 'cam'? 'active'">
-                    <a class="nav-link" th:href="@{/cam}">웹캠<span class="sr-only" th:if="${menu} == 'cam'">(current)</span></a>
-                </li>
-                <li class="nav-item" th:classappend="${menu} == 'agora'? 'active'">
-                    <a class="nav-link" th:href="@{/agora}">아고라<span class="sr-only" th:if="${menu} == 'agora'">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false">컨텐츠</a>
+                    <div class="dropdown-menu">
+                        <div class="nav-item" th:classappend="${menu} == 'board'? 'active'">
+                        </div>
+                        <a class="dropdown-item text-dark" th:classappend="${menu} == 'chat'? 'active'" th:href="@{/chat/list}">
+                            채팅<span class="sr-only" th:if="${menu} == 'chat'">(current)</span></a>
+                        <a class="dropdown-item text-dark" th:classappend="${menu} == 'cam'? 'active'" th:href="@{/cam}">
+                            웹캠<span class="sr-only" th:if="${menu} == 'cam'">(current)</span></a>
+                        <a class="dropdown-item text-dark" th:classappend="${menu} == 'agora'? 'active'" th:href="@{/agora}">
+                            아고라<span class="sr-only" th:if="${menu} == 'agora'">(current)</span></a>
+                        
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" disabled>추가예정</a>
+                    </div>
                 </li>
             </ul>
 
@@ -35,11 +42,20 @@
             <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/account/register}"
                 sec:authorize="!isAuthenticated()">회원가입</a>
             <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
-                <span class="text-white" sec:authentication="name">사용자</span>&nbsp;
-                <span class="text-white mx-2" sec:authentication="principal">권한</span>
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+                <div class="text-white">
+                    <span sec:authentication="name">사용자</span>&nbsp;&nbsp;
+                    [<span sec:authentication="principal" style="text-transform : uppercase">권한</span>]
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+                </div>
             </form>
         </div>
     </nav>
-  </body>  
+
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block !important;
+            margin-top: 0 !important;
+        }
+    </style>
+</body>  
 </html>
