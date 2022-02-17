@@ -14,6 +14,10 @@ spring:
 
 server:
   port: 1004
+  ssl:
+    key-store: classpath:key.p12
+    key-store-type: PKCS12  
+    key-store-password: changeit
 
 # ---
 

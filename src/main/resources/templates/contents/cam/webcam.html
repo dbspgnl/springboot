@@ -8,7 +8,8 @@
         <script>
             // const ROOM_ID = "<%= roomId %>"
         </script>
-        <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+        <!-- <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script> -->
+        <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
         <!-- <script src="/socket.io/socket.io.js" defer></script> -->
         <!-- <script src="js/script.js" defer></script> -->
         <title>Document</title>
@@ -23,6 +24,7 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                filter: blur(0px) invert(0) opacity(1);
             }
         </style>
     </head>
@@ -32,78 +34,81 @@
             <div>여기는 캠 페이지</div>
             <button class="btn btn-warning" onclick="connectWs()" id="startBtn"> 시작하기</button>
             <div>메시지: </div><input id="chatting"></input>&nbsp;&nbsp;<button class="btn btn-success" onclick="send()">보내기 </button>
-            <div id="video-grid"></div>
             <div id="chatting"></div>
             <div id="chat"></div>
+            <div id="video-grid"></div>
         </body>
         
         <script type="text/javascript">
         
-            var ws;
+            var ws = new WebSocket('wss://' + location.host + '/wscam');
             function connectWs() {
-                ws = new WebSocket('ws://' + location.host + '/wscam');
-                ws.onmessage = function(data) {
-                    $("<p>"+data.data+"</p>").prependTo('#chat');
-                }
+                // ws = new WebSocket('wss://' + location.host + '/wscam');
+                // ws.onmessage = function(data) {
+                //     $("<p>"+data.data+"</p>").prependTo('#chat');
+                // }
         
-                $('#startBtn').hide();
+                // $('#startBtn').hide();
+                addVideoStream(myVideo, stream);
             }
         
-            function send() {
-                ws.send($("#chatting").val());
-                $('#chatting').val("");
-            }
+            // function send() {
+            //     ws.send($("#chatting").val());
+            //     $('#chatting').val("");
+            // }
 
             // const io = require('socket.io')(server)
             // const socket = io('/wscam')
             const videoGrid = document.getElementById('video-grid')
-            // const myPeer = new Peer(undefined, {
-            //     host: '/',
-            //     port: '3001'
-            // })
-            // const myPeer = new Peer({host:'peerjs-server.herokuapp.com', secure:true, port:443})
+            const peer = new Peer(undefined, {
+                host: 'wss://localhost',
+                port: '3001',
+                secure: true
+            })
+            // const peer = new Peer({host:'peerjs-server.herokuapp.com', secure:true, port:443})
             const myVideo = document.createElement('video')
-            myVideo.muted = true
+            myVideo.muted = true // 음소거 설정
             const peers = {}
-            navigator.mediaDevices.getUserMedia({
+            navigator.mediaDevices.getUserMedia({ //미디어 입력 장치 사용 권한을 요청
                 video: true,
                 audio: true
-            }).then(stream => {
+            }).then(stream => { //미디어 입력 장치 허용시
+                
                 addVideoStream(myVideo, stream)
-        
-            //     myPeer.on('call', call => {
-            //         call.answer(stream)
-            //         const video = document.createElement('video')
-            //         call.on('stream', userVideoStream => {
-            //             addVideoStream(video, userVideoStream)
-            //         })
-            //     })
-        
-            //     socket.on('user-connected', userId => {
-            //         connectToNewUser(userId, stream)
-            //     })
+                
+                peer.on('call', call => {
+                    call.answer(stream)
+                    const video = document.createElement('video')
+                    call.on('stream', userVideoStream => {
+                        addVideoStream(video, userVideoStream)
+                    })
+                })
+                
+                // socket.on('user-connected', userId => {
+                //     connectToNewUser(userId, stream)
+                // })
             })
         
             // socket.on('user-disconnected', userId => {
             //     if (peers[userId]) peers[userId].close()
             // })
         
-            // myPeer.on('open', id => {
+            // peer.on('open', id => {
             //     socket.emit('join-room', ROOM_ID, id)
             // })
         
-            // function connectToNewUser(userId, stream) {
-            //     const call = myPeer.call(userId, stream)
-            //     const video = document.createElement('video')
-            //     call.on('stream', userVideoStream => {
-            //         addVideoStream(video, userVideoStream)
-            //     })
-            //     call.on('close', () => {
-            //         video.remove()
-            //     })
+            function connectToNewUser(userId, stream) {
+                const call = peer.call(userId, stream)
+                const video = document.createElement('video')
+                call.on('stream', userVideoStream => {
+                    addVideoStream(video, userVideoStream)
+                })
+                call.on('close', () => {
+                    video.remove()
+                })
         
-            //     peers[userId] = call
-            // }
+                peers[userId] = call
+            }
         
             function addVideoStream(video, stream) {
                 video.srcObject = stream
