@@ -25,6 +25,9 @@
                 <li class="nav-item" th:classappend="${menu} == 'cam'? 'active'">
                     <a class="nav-link" th:href="@{/cam}">웹캠<span class="sr-only" th:if="${menu} == 'cam'">(current)</span></a>
                 </li>
+                <li class="nav-item" th:classappend="${menu} == 'agora'? 'active'">
+                    <a class="nav-link" th:href="@{/agora}">아고라<span class="sr-only" th:if="${menu} == 'agora'">(current)</span></a>
+                </li>
             </ul>
 
             <a class="btn btn-secondary my-2 mr-2 my-sm-0" th:href="@{/account/login}"
