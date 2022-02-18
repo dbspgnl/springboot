@@ -1,0 +1,116 @@
+<div aria-label="설정 모달" class="modal fade" id="configModal" tabindex="-1">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="configModalLabel">설정</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body form-group">
+                
+                <form id="form" class="row col l12 s12">
+                    <div class="row container col l12 s12">
+                        <div class="col" style="min-width: 433px; max-width: 443px">
+                            <div class="card" style="margin-top: 0px; margin-bottom: 0px;">
+                                <div class="row card-content" style="margin-bottom: 0px;">
+                                    <div class="input-field">
+                                        <label for="appID" class="active">App ID</label>
+                                        <input type="text" placeholder="App ID" name="appID" value="f7c91bad126c40acbe05d67b570314d5">
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="channel" class="active">Channel</label>
+                                        <input type="text" placeholder="channel" name="channel" value="test">
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="token" class="active">Token</label>
+                                        <input type="text" placeholder="token" name="token" value="006f7c91bad126c40acbe05d67b570314d5IABrVp8uRWgyuUKdF7CA3PmcwGpXc57/lya5s9cuDdkB6wx+f9gAAAAAEACEYx7ACDsPYgEAAQAGOw9i">
+                                    </div>
+                                    <div class="row" style="margin: 0">
+                                        <div class="col s12">
+                                            <button class="btn btn-raised btn-primary waves-effect waves-light"
+                                                id="join">JOIN</button>
+                                            <button class="btn btn-raised btn-primary waves-effect waves-light"
+                                                id="leave">LEAVE</button>
+                                            <button class="btn btn-raised btn-primary waves-effect waves-light"
+                                                id="publish">PUBLISH</button>
+                                            <button class="btn btn-raised btn-primary waves-effect waves-light"
+                                                id="unpublish">UNPUBLISH</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="collapsible card agora-secondary-border" style="margin-top: .4rem; border: 1px ">
+                                <li>
+                                    <div class="collapsible-header agora-secondary-bg">
+                                        <h8 class="center-align">ADVANCED SETTINGS</h8>
+                                    </div>
+                                    <div class="collapsible-body card-content">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="input-field">
+                                                    <label for="UID" class="active">UID</label>
+                                                    <input type="number" placeholder="UID" name="uid">
+                                                </div>
+                                                <div class="input-field">
+                                                    <label for="cameraId" class="active">CAMERA</label>
+                                                    <select name="cameraId" id="cameraId"></select>
+                                                </div>
+                                                <div class="input-field">
+                                                    <label for="microphoneId" class="active">MICROPHONE</label>
+                                                    <select name="microphoneId" id="microphoneId"></select>
+                                                </div>
+                                                <div class="input-field">
+                                                    <label for="cameraResolution" class="active">CAMERA RESOLUTION</label>
+                                                    <select name="cameraResolution" id="cameraResolution"></select>
+                                                </div>
+                                                <div class="row col s12">
+                                                    <div class="row">
+                                                        <label for="mode" class="active">MODE</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label>
+                                                            <input type="radio" class="with-gap" name="mode" value="live" checked />
+                                                            <span>live</span>
+                                                        </label>
+                                                        
+                                                        <label>
+                                                            <input type="radio" class="with-gap" name="mode" value="rtc" />
+                                                            <span>rtc</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row col s12">
+                                                    <div class="row">
+                                                        <label for="codec" class="active">CODEC</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label>
+                                                            <input type="radio" class="with-gap" name="codec" value="h264"
+                                                                checked />
+                                                            <span>h264</span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" class="with-gap" name="codec" value="vp8" />
+                                                            <span>vp8</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
