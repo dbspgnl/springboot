@@ -32,7 +32,8 @@
                             아고라<span class="sr-only" th:if="${menu} == 'agora'">(current)</span></a>
                         
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" disabled>추가예정</a>
+                        <a class="dropdown-item text-dark" th:classappend="${menu} == 'test'? 'active'" th:href="@{/test}">
+                            테스트<span class="sr-only" th:if="${menu} == 'test'">(current)</span></a>
                     </div>
                 </li>
             </ul>

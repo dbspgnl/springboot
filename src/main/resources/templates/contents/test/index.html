@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org"
+    layout:decorator="~{fragments/layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/css/agora.css}" rel="stylesheet">
+</head>
+
+<body class="agora-theme" layout:fragment="content">
+
+    <button id="shareViewBtn" class="btn btn-primary btn-sm" th:onclick="shareView()">화면 공유</button>
+    <button id="closeViewBtn" class="btn btn-primary btn-sm" th:onclick="closeView()" hidden>공유 종료</button>
+    <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#shareConfigModal">
+        설정
+    </button>
+
+    <div class="row video-group">
+        <div class="col">
+            <p id="local-player-name" class="player-name"></p>
+            <div id="local-player" class="player"></div>
+        </div>
+        <div class="w-100"></div>
+        <div class="col">
+            <div id="remote-playerlist"></div>
+        </div>
+    </div>
+
+    <th:block aria-label="설정" th:include="contents/test/shareConfig"></th:block>
+
+    <style>
+        .player {
+        width: 480px;
+        height: 320px;
+        }
+
+        .player-name {
+        margin: 8px 0;
+        }
+
+        @media (max-width: 640px) {
+        .player {
+            width: 320px;
+            height: 240px;
+        }
+        }
+    </style>
+
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+    <script th:src="@{/js/agora-share.js}"></script>
+    <script>
+        function shareView() {
+            $("#shareViewBtn").attr("hidden", true);
+            $("#closeViewBtn").attr("hidden", false);
+            $("#join").click();
+        }
+
+        function closeView() {
+            $("#closeViewBtn").attr("hidden", true);
+            $("#shareViewBtn").attr("hidden", false);
+            $("#leave").click();
+        }
+    </script>
+</html>

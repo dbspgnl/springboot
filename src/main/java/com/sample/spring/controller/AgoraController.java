@@ -10,5 +10,10 @@ public class AgoraController {
     public String index() {
         return "contents/agora/webcam";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "contents/test/index";
+    }
     
 }
